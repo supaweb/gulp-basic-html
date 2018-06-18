@@ -89,7 +89,7 @@ gulp.task('watch', function() {
     gulp.watch(source_dir + '/js/**/*.js', ['js']);
     gulp.watch(source_dir + '/images/**/*', ['img']);
     gulp.watch(source_dir + '/svg/**/*.svg', ['svg']);
-    // gulp.watch(source_dir + '/**/*.html', ['html']);
+    gulp.watch(source_dir + '/**/*.html', ['html']);
 });
 
 gulp.task('compress-css', function(){
