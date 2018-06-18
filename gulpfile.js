@@ -107,9 +107,3 @@ gulp.task('compress-js', function(){
 });
 
 gulp.task('build', ['compress-css', 'compress-js']);
-
-
-
-
-    
-  
