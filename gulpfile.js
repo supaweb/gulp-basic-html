@@ -1,5 +1,4 @@
 var gulp  = require('gulp'),
-    rsync = require('gulp-rsync'),
     uglify = require('gulp-uglify'),
     cssnano = require('gulp-cssnano'),
     stripDebug = require('gulp-strip-debug'),
@@ -13,7 +12,7 @@ var gulp  = require('gulp'),
 
 const $ = gulpLoadPlugins();
 const source_dir = 'src';
-const destination_dir = '../../../web/dashboard';
+const destination_dir = 'dist';
 
 gulp.task('css', function() {
     return gulp.src(source_dir + '/scss/*.scss')
@@ -106,4 +105,16 @@ gulp.task('compress-js', function(){
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('build', ['compress-css', 'compress-js']);
+gulp.task('wipe', () => {
+    return del(destination_dir, {force: true});
+});
+
+gulp.task('compress', ['compress-css', 'compress-js']);
+
+gulp.task('build', ['html', 'css', 'js', 'img', 'svg'], function () {
+    gulp.start('compress');
+});
+
+gulp.task('default', ['wipe'], function () {
+    gulp.start('build');
+});
