@@ -7,8 +7,8 @@ var gulp  = require('gulp'),
     gcmq = require('gulp-group-css-media-queries'),
     del = require('del'),
     sourcemaps = require('gulp-sourcemaps'),
-    concat = require('gulp-concat');
-
+    concat = require('gulp-concat'),
+    htmlmin = require('gulp-htmlmin');
 
 const $ = gulpLoadPlugins();
 const source_dir = 'src';
@@ -80,6 +80,7 @@ gulp.task('html', () => {
             prefix: '@@',
             basepath: source_dir + '/html'
         }))
+        .pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(gulp.dest(destination_dir + '/'));
 });
 
